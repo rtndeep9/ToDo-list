@@ -14,7 +14,8 @@ app.set("view engine", "ejs");
 
 mongoose.connect("mongodb://localhost:27017/todolistDB", {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useFindAndModify: false
 });
 
 //Creating default items documents
@@ -93,6 +94,17 @@ app.post("/", function(req, res) {
 
   res.redirect("/");
 
+});
+
+app.post("/delete", function(req, res){
+  const checkedItem = req.body.checkBox;
+
+  Item.findByIdAndRemove(checkedItem, function(err){
+    if(!err){
+      console.log("Successfully deleted checked item");
+      res.redirect("/");
+    }
+  });
 });
 
 // app.post("/work", function(req, res) {
