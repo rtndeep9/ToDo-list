@@ -35,7 +35,7 @@ const item2 = new Item({
 });
 
 const item3 = new Item({
-  name: "<-- hit this to cross off an item"
+  name: "⬅ hit this to cross off an item"
 });
 
 const defaultItems = [item1, item2, item3];
@@ -67,18 +67,12 @@ app.get("/", function(req, res) {
   });
 });
 
-//Work page render
 
-// app.get("/work", function(req, res) {
-//   res.render("lists", {
-//     listTitle: "Work List",
-//     newListItems: workItems
-//   });
-// });
-//
-// app.get("/about", function(req, res) {
-//   res.render("about");
-// });
+app.get("/:customName", function(req, res){
+  const customList = req.params.customName;
+
+})
+
 
 
 //Adding item to list
@@ -107,10 +101,7 @@ app.post("/delete", function(req, res){
   });
 });
 
-// app.post("/work", function(req, res) {
-//   let item = req.body.newItem;
-//   workItems.push(item);
-// })
+
 
 app.listen(3000, function() {
   console.log("Server started on port 3000");
